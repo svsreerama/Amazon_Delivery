@@ -1,0 +1,44 @@
+# streamlit_app.py
+import streamlit as st
+import pandas as pd
+import joblib
+
+# Streamlit App for Delivery Time Prediction
+
+# Load the trained model (use the best-performing model)
+model = joblib.load('models/random_forest_model.pkl')  # adjust if using a different model
+
+# Set up the app layout
+st.title("Amazon Delivery Time Prediction")
+st.write("Input order details to predict delivery time.")
+
+# Input fields for features
+agent_age = st.number_input("Agent Age", min_value=18, max_value=100, step=1, format="%d")
+agent_rating = st.number_input("Agent Rating (1-5)", min_value=0.0, max_value=5.0, step=0.1, format="%.1f")
+distance = st.number_input("Distance (km)", min_value=0.0, step=0.1, format="%.2f")
+weather = st.selectbox("Weather", ["Sunny", "Rainy", "Cloudy"])
+traffic = st.selectbox("Traffic Level", ["Low", "Medium", "High"])
+vehicle = st.selectbox("Vehicle Type", ["motorcycle", "scooter", "bicycle", "car"])
+area = st.selectbox("Area", ["Urban", "Metropolitian", "Rural"])
+category = st.selectbox("Product Category", ["Clothing", "Electronics", "Sports", "Cosmetics", "Toys"])
+
+# Perform prediction when button is clicked
+if st.button("Predict Delivery Time"):
+    # Prepare input data as a DataFrame for the model
+    input_data = pd.DataFrame({
+        'Agent_Age': [agent_age],
+        'Agent_Rating': [agent_rating],
+        'Distance_km': [distance],
+        # Hour and DayOfWeek are placeholders (0) since current time is not provided by user
+        'Hour': [0],
+        'DayOfWeek': [0],
+        'Weather': [weather],
+        'Traffic': [traffic],
+        'Vehicle': [vehicle],
+        'Area': [area],
+        'Category': [category]
+    })
+    # Predict using the loaded model pipeline
+    pred = model.predict(input_data)[0]
+    st.success(f"Estimated Delivery Time: {pred:.2f} minutes")
+
