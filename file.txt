@@ -1,0 +1,91 @@
+# Extend the EDA section of the 10-minute speech with more detailed points
+
+extended_eda = """
+---
+
+Exploratory Data Analysis:
+I conducted Exploratory Data Analysis to better understand the structure and behavior of the data.
+
+Key EDA insights include:
+
+- **Delivery Time Distribution**: The delivery time was right-skewed with a long tail, indicating a few deliveries took much longer. A histogram and box plot were used to visualize this.
+
+- **Distance vs Delivery Time**: A positive correlation was observed between distance and delivery time, although it was not perfectly linear due to other factors like traffic and weather.
+
+- **Weather Impact**: Stormy and foggy conditions showed a noticeable increase in average delivery time compared to sunny and clear days.
+
+- **Traffic Conditions**: Deliveries made during high traffic and jam conditions had significantly higher delivery times, validating the feature's importance.
+
+- **Agent Performance**: Higher-rated agents were generally associated with slightly shorter delivery times, although this effect was less prominent than distance or traffic.
+
+- **Time-based Trends**: Deliveries during peak hours (11 AM – 3 PM) showed longer delivery durations. Day of the week also played a role, with weekends showing more delays.
+
+- **Outliers**: Some extreme outliers were detected in delivery time—potentially due to missed deliveries or data recording errors. These were either removed or capped during preprocessing.
+
+These EDA findings guided feature selection and model expectations, ensuring that only relevant variables were included in training while handling anomalies carefully.
+"""
+
+# Re-generate the full speech with updated EDA
+full_speech = f"""
+Amazon Delivery Time Prediction - 10 Minute Project Speech
+===========================================================
+
+Good [morning/afternoon], everyone.
+
+My name is [Your Name], and today I am going to present my data science capstone project titled “Amazon Delivery Time Prediction.”
+
+This project is inspired by the logistics challenges faced by e-commerce platforms, especially when it comes to accurately estimating delivery times. The objective of this project was to build a machine learning model that predicts delivery time in minutes based on real-world factors like traffic, weather, agent performance, distance, and order details.
+
+---
+
+Dataset and Features:
+The dataset used in this project is named 'amazon_delivery.csv' and was provided by GUVI. It contains several useful columns including agent age, rating, vehicle type, weather conditions, traffic levels, order and pickup timestamps, and geolocation data for the store and customer.
+
+Key steps in data preparation included:
+- Handling missing values
+- Parsing date and time fields
+- Calculating the distance using the Haversine formula
+- Creating new features such as hour of the day and day of the week
+{extended_eda}
+---
+
+Feature Engineering:
+Feature engineering played a crucial role. I calculated the distance in kilometers using latitude and longitude, extracted time-related features like hour and day of the week, and performed one-hot encoding for categorical variables such as weather and traffic.
+
+---
+
+Model Development:
+I trained and evaluated three regression models:
+1. Linear Regression
+2. Random Forest Regressor
+3. XGBoost Regressor
+
+Among these, the XGBoost model performed the best with an RMSE of 22.58 and an R² score of 0.806. This means it was able to explain more than 80% of the variance in delivery time predictions.
+
+---
+
+Experiment Tracking:
+I used MLflow to log all experiments, including model parameters, evaluation metrics, and model artifacts. This allowed me to compare models easily and track their performance.
+
+---
+
+Deployment:
+The final model was deployed using a Streamlit web application. The app allows the user to input delivery details like agent age, rating, weather, and traffic, and instantly get a predicted delivery time in minutes.
+
+---
+
+Conclusion:
+This project demonstrates the end-to-end data science workflow—from data cleaning and feature engineering to model training, evaluation, experiment tracking, and deployment.
+
+It not only helped me gain hands-on experience with real-world data and tools like MLflow and Streamlit, but also reinforced my understanding of machine learning concepts such as regression, model evaluation, and feature importance.
+
+Thank you for your time, and I look forward to any questions.
+"""
+
+# Save the speech with detailed EDA to file
+speech_path = "/mnt/data/amazon_project_10min_speech_extended_eda.txt"
+with open(speech_path, "w") as f:
+    f.write(full_speech.strip())
+
+speech_path
+

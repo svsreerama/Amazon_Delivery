@@ -1,0 +1,73 @@
+# Recreate the 10-minute speech file after code execution state reset
+
+speech = """
+Amazon Delivery Time Prediction - 10 Minute Project Speech
+===========================================================
+
+Good [morning/afternoon], everyone.
+
+My name is [Your Name], and today I am going to present my data science capstone project titled “Amazon Delivery Time Prediction.”
+
+This project is inspired by the logistics challenges faced by e-commerce platforms, especially when it comes to accurately estimating delivery times. The objective of this project was to build a machine learning model that predicts delivery time in minutes based on real-world factors like traffic, weather, agent performance, distance, and order details.
+
+---
+
+Dataset and Features:
+The dataset used in this project is named 'amazon_delivery.csv' and was provided by GUVI. It contains several useful columns including agent age, rating, vehicle type, weather conditions, traffic levels, order and pickup timestamps, and geolocation data for the store and customer.
+
+Key steps in data preparation included:
+- Handling missing values
+- Parsing date and time fields
+- Calculating the distance using the Haversine formula
+- Creating new features such as hour of the day and day of the week
+
+---
+
+Exploratory Data Analysis:
+I conducted EDA to understand how different factors affect delivery time. Some key observations included:
+- High traffic and stormy weather were associated with increased delivery times
+- Longer distances and lower agent ratings also led to delays
+- Most orders were placed during mid-day and weekends
+
+---
+
+Feature Engineering:
+Feature engineering played a crucial role. I calculated the distance in kilometers using latitude and longitude, extracted time-related features like hour and day of the week, and performed one-hot encoding for categorical variables such as weather and traffic.
+
+---
+
+Model Development:
+I trained and evaluated three regression models:
+1. Linear Regression
+2. Random Forest Regressor
+3. XGBoost Regressor
+
+Among these, the XGBoost model performed the best with an RMSE of 22.58 and an R² score of 0.806. This means it was able to explain more than 80% of the variance in delivery time predictions.
+
+---
+
+Experiment Tracking:
+I used MLflow to log all experiments, including model parameters, evaluation metrics, and model artifacts. This allowed me to compare models easily and track their performance.
+
+---
+
+Deployment:
+The final model was deployed using a Streamlit web application. The app allows the user to input delivery details like agent age, rating, weather, and traffic, and instantly get a predicted delivery time in minutes.
+
+---
+
+Conclusion:
+This project demonstrates the end-to-end data science workflow—from data cleaning and feature engineering to model training, evaluation, experiment tracking, and deployment.
+
+It not only helped me gain hands-on experience with real-world data and tools like MLflow and Streamlit, but also reinforced my understanding of machine learning concepts such as regression, model evaluation, and feature importance.
+
+Thank you for your time, and I look forward to any questions.
+"""
+
+# Save the speech to a file
+speech_path = "/mnt/data/amazon_project_10min_speech.txt"
+with open(speech_path, "w") as f:
+    f.write(speech.strip())
+
+speech_path
+
